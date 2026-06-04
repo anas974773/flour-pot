@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flour Pot - Pure, Direct-Mill Organic Products</title>
+    <!-- Meta Description for SEO -->
+    <meta name="description" content="Flour Pot offers premium organic coconut oil, direct-mill milled rice powder, chilly powder, coriander powder, and spice blends with zero preservatives. Sourced direct from the mill.">
+    
+    <!-- Google Fonts including Dancing Script for the handwritten logo look -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="styles.css">
+    <!-- FontAwesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <!-- Header / Navigation -->
+    <header id="home">
+        <div class="nav-container">
+            <div class="brand-logo" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
+                <!-- Inline SVG depicting the Flourpot Logo Jar & Swirl -->
+                <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="50" cy="50" r="45" fill="#f1f8f3" stroke="#3d6a4a" stroke-width="2.5"/>
+                    <!-- Jar outline -->
+                    <path d="M38 52 C38 43, 40 43, 42 43 L58 43 C60 43, 62 43, 62 52 L62 66 C62 70, 59 72, 55 72 L45 72 C41 72, 38 70, 38 66 Z" fill="#eae0d5" stroke="#3d6a4a" stroke-width="3" stroke-linejoin="round"/>
+                    <!-- Jar Lid -->
+                    <path d="M42 43 L58 43 L58 39 L42 39 Z" fill="#3d6a4a" stroke="#3d6a4a" stroke-width="2" stroke-linejoin="round"/>
+                    <!-- Steam Swirl -->
+                    <path d="M50 35 C48 31, 53 29, 50 25 C47 21, 52 19, 52 17" stroke="#3d6a4a" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+                    <!-- Water/Liquid line inside jar -->
+                    <path d="M39.5 56 Q50 52 60.5 56" stroke="#3d6a4a" stroke-width="2.5" fill="none"/>
+                </svg>
+                <span class="brand-name" style="font-family: 'Dancing Script', cursive; font-size: 1.95rem; font-weight: 700; color: #3d6a4a; margin-left: -5px;">Flour Pot</span>
+            </div>
+            
+            <ul class="nav-menu">
+                <li><a href="#home" class="nav-link active">Home</a></li>
+                <li><a href="#products" class="nav-link">Products</a></li>
+                <li><a href="#about" class="nav-link">About Us</a></li>
+                <li><a href="#trust" class="nav-link">Our Trust</a></li>
+                <li><a href="#order" class="nav-link">Order</a></li>
+                <li><a href="#contact" class="nav-link">Contact</a></li>
+            </ul>
+
+            <div style="display: flex; align-items: center; gap: 1rem;">
+                <button class="cart-trigger" aria-label="Shopping Cart">
+                    <i class="fa-solid fa-shopping-basket"></i>
+                    <span class="cart-count">0</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <span class="hero-subtitle">100% Organic & Pure</span>
+            <h1>Pure. Milled. <br><span>Direct to Your Pot</span></h1>
+            <p class="hero-description">
+                Experience the authentic aroma and taste of farm-fresh ingredients. Flour Pot brings you premium organic coconut oil, and mill-fresh spices like chilly powder and coriander powder ground using traditional mill methods. No preservatives, no additives—just pure organic goodness.
+            </p>
+            <div class="hero-cta">
+                <a href="#products" class="btn btn-primary">Shop Products <i class="fa-solid fa-arrow-right"></i></a>
+                <a href="#about" class="btn btn-secondary">Learn More</a>
+            </div>
+        </div>
+        <div class="hero-image-container">
+            <div class="hero-image-bg"></div>
+            <!-- Render clean placeholder/main photo containing all products -->
+            <img src="images/coconut_oil.png" alt="Flour Pot Organic Spices and Oils" class="hero-image">
+        </div>
+    </section>
+
+    <!-- Product Section -->
+    <section id="products">
+        <div class="section-header">
+            <span class="section-tag">Freshly Packed</span>
+            <h2 class="section-title">Our Organic Mill Products</h2>
+        </div>
+
+        <div class="products-grid">
+            <!-- Product 1: Coconut Oil -->
+            <div class="product-card" data-id="p1" data-name="Organic Coconut Oil" data-price="12.00" data-image="images/coconut_oil.png">
+                <div class="product-image-wrapper">
+                    <span class="product-badge">Best Seller</span>
+                    <img src="images/coconut_oil.png" alt="Organic Coconut Oil" class="product-image">
+                </div>
+                <div class="product-info">
+                    <h3 class="product-title">Organic Coconut Oil</h3>
+                    <p class="product-desc">Pure cold-pressed coconut oil extracted from fresh coconuts. Retains natural nutrients, aroma, and delicate sweet flavor.</p>
+                    <div class="product-meta">
+                        <span class="product-price">$12.00</span>
+                        <select class="product-options" aria-label="Select packaging option">
+                            <option value="500ml - $12.00">500ml</option>
+                            <option value="1L - $22.20">1 Litre</option>
+                        </select>
+                    </div>
+                    <div class="product-action">
+                        <div class="qty-selector">
+                            <button class="qty-btn minus" aria-label="Decrease quantity"><i class="fa-solid fa-minus"></i></button>
+                            <input type="text" class="qty-input" value="1" readonly>
+                            <button class="qty-btn plus" aria-label="Increase quantity"><i class="fa-solid fa-plus"></i></button>
+                        </div>
+                        <button class="btn btn-primary btn-add-cart">Add <i class="fa-solid fa-cart-plus"></i></button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product 2: Rice Powder -->
+            <div class="product-card" data-id="p2" data-name="Premium Rice Powder" data-price="4.50" data-image="images/rice_powder.png">
+                <div class="product-image-wrapper">
+                    <img src="images/rice_powder.png" alt="Premium Rice Powder" class="product-image">
+                </div>
+                <div class="product-info">
+                    <h3 class="product-title">Premium Rice Powder</h3>
+                    <p class="product-desc">Direct-mill milled premium white rice powder. Clean, gluten-free, and ideal for authentic appam, idiyappam, and healthy recipes.</p>
+                    <div class="product-meta">
+                        <span class="product-price">$4.50</span>
+                        <select class="product-options" aria-label="Select packaging option">
+                            <option value="500g - $4.50">500g</option>
+                            <option value="1kg - $8.30">1kg</option>
+                        </select>
+                    </div>
+                    <div class="product-action">
+                        <div class="qty-selector">
+                            <button class="qty-btn minus" aria-label="Decrease quantity"><i class="fa-solid fa-minus"></i></button>
+                            <input type="text" class="qty-input" value="1" readonly>
+                            <button class="qty-btn plus" aria-label="Increase quantity"><i class="fa-solid fa-plus"></i></button>
+                        </div>
+                        <button class="btn btn-primary btn-add-cart">Add <i class="fa-solid fa-cart-plus"></i></button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product 3: Chilly Powder -->
+            <div class="product-card" data-id="p3" data-name="Organic Chilly Powder" data-price="5.00" data-image="images/chilly_powder.png">
+                <div class="product-image-wrapper">
+                    <img src="images/chilly_powder.png" alt="Organic Chilly Powder" class="product-image">
+                </div>
+                <div class="product-info">
+                    <h3 class="product-title">Organic Chilly Powder</h3>
+                    <p class="product-desc">Vibrant red chilly powder ground directly from naturally dried, selected red chillies. Provides raw, bold spiciness without colorants.</p>
+                    <div class="product-meta">
+                        <span class="product-price">$5.00</span>
+                        <select class="product-options" aria-label="Select packaging option">
+                            <option value="250g - $2.75">250g</option>
+                            <option value="500g - $5.00">500g</option>
+                        </select>
+                    </div>
+                    <div class="product-action">
+                        <div class="qty-selector">
+                            <button class="qty-btn minus" aria-label="Decrease quantity"><i class="fa-solid fa-minus"></i></button>
+                            <input type="text" class="qty-input" value="1" readonly>
+                            <button class="qty-btn plus" aria-label="Increase quantity"><i class="fa-solid fa-plus"></i></button>
+                        </div>
+                        <button class="btn btn-primary btn-add-cart">Add <i class="fa-solid fa-cart-plus"></i></button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product 4: Coriander Powder -->
+            <div class="product-card" data-id="p4" data-name="Organic Coriander Powder" data-price="4.50" data-image="images/coriander_powder.png">
+                <div class="product-image-wrapper">
+                    <img src="images/coriander_powder.png" alt="Organic Coriander Powder" class="product-image">
+                </div>
+                <div class="product-info">
+                    <h3 class="product-title">Organic Coriander Powder</h3>
+                    <p class="product-desc">Freshly milled aromatic coriander seeds. Adds a pleasant, earthy, and citrusy aroma to elevate your home-cooked dishes.</p>
+                    <div class="product-meta">
+                        <span class="product-price">$4.50</span>
+                        <select class="product-options" aria-label="Select packaging option">
+                            <option value="250g - $2.50">250g</option>
+                            <option value="500g - $4.50">500g</option>
+                        </select>
+                    </div>
+                    <div class="product-action">
+                        <div class="qty-selector">
+                            <button class="qty-btn minus" aria-label="Decrease quantity"><i class="fa-solid fa-minus"></i></button>
+                            <input type="text" class="qty-input" value="1" readonly>
+                            <button class="qty-btn plus" aria-label="Increase quantity"><i class="fa-solid fa-plus"></i></button>
+                        </div>
+                        <button class="btn btn-primary btn-add-cart">Add <i class="fa-solid fa-cart-plus"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Our Products Section -->
+    <section id="about">
+        <div class="about">
+            <div class="about-img-container">
+                <img src="images/coriander_powder.png" alt="Direct Mill Milled Coriander Seeds" class="about-img">
+            </div>
+            <div class="about-content">
+                <span class="section-tag" style="text-align: left;">Our Philosophy</span>
+                <h2>Direct-Mill <span>Sourcing & Purity</span></h2>
+                <p class="about-text">
+                    At Flour Pot, we believe in minimal intervention. Instead of warehousing spices and oils for months, we mill our organic rice, dried red chillies, and coriander seeds directly at our local mill and pack them immediately. Our coconut oil is cold-pressed to ensure every jar preserves its natural aroma and health benefits.
+                </p>
+                <div class="about-features">
+                    <div class="about-feat-item">
+                        <div class="about-feat-icon"><i class="fa-solid fa-wind"></i></div>
+                        <div>
+                            <div class="about-feat-title">Retained Aromas</div>
+                            <div class="about-feat-desc">Immediate packaging after milling locks in natural essential oils.</div>
+                        </div>
+                    </div>
+                    <div class="about-feat-item">
+                        <div class="about-feat-icon"><i class="fa-solid fa-seedling"></i></div>
+                        <div>
+                            <div class="about-feat-title">100% Raw Spices</div>
+                            <div class="about-feat-desc">No starch or colors are added. Pure spice powder.</div>
+                        </div>
+                    </div>
+                    <div class="about-feat-item">
+                        <div class="about-feat-icon"><i class="fa-solid fa-temperature-empty"></i></div>
+                        <div>
+                            <div class="about-feat-title">Cold-Pressed Oils</div>
+                            <div class="about-feat-desc">Low temperature extraction retains antioxidant properties.</div>
+                        </div>
+                    </div>
+                    <div class="about-feat-item">
+                        <div class="about-feat-icon"><i class="fa-solid fa-shield-halved"></i></div>
+                        <div>
+                            <div class="about-feat-title">Clean Sourcing</div>
+                            <div class="about-feat-desc">Strict organic practices from mill to kitchen pot.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Our Trust Section -->
+    <section id="trust">
+        <div class="section-header">
+            <span class="section-tag">Guarantees</span>
+            <h2 class="section-title">Why You Can Trust Flour Pot</h2>
+        </div>
+        
+        <div class="trust-grid">
+            <div class="trust-card">
+                <div class="trust-icon"><i class="fa-solid fa-award"></i></div>
+                <h3 class="trust-title">100% Organic certified</h3>
+                <p class="trust-desc">We utilize only premium organic-grade ingredients, ensuring they are free from chemical pesticide sprays.</p>
+            </div>
+            
+            <div class="trust-card">
+                <div class="trust-icon"><i class="fa-solid fa-ban"></i></div>
+                <h3 class="trust-title">Zero Preservatives</h3>
+                <p class="trust-desc">No colors, no food additives, and zero shelf-life extending chemical substances. Pure and wholesome.</p>
+            </div>
+            
+            <div class="trust-card">
+                <div class="trust-icon"><i class="fa-solid fa-leaf"></i></div>
+                <h3 class="trust-title">Eco-friendly Packaging</h3>
+                <p class="trust-desc">We are committed to the environment. Our packaging materials are selected to minimize plastic waste footprint.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive Order / Checkout Section -->
+    <section id="order">
+        <div class="section-header">
+            <span class="section-tag">Checkout</span>
+            <h2 class="section-title">Review & Place Order</h2>
+        </div>
+
+        <div class="order-section">
+            <div class="order-container">
+                <!-- Cart Summary -->
+                <div class="cart-summary-card">
+                    <div class="cart-header">
+                        <h3>Selected Items</h3>
+                        <span class="form-label" style="font-size: 0.95rem; color: #3d6a4a;"><i class="fa-solid fa-shopping-bag"></i> Cart Summary</span>
+                    </div>
+                    
+                    <div class="cart-items-list">
+                        <!-- Dynamic Cart items inject here via JS -->
+                        <div class="cart-empty-message">
+                            <i class="fa-solid fa-shopping-basket" style="font-size: 3rem; color: #e2ede5; margin-bottom: 1rem; display: block;"></i>
+                            <p>Your cart is empty. Explore our products and add them to order!</p>
+                        </div>
+                    </div>
+
+                    <div class="cart-totals">
+                        <div class="totals-row">
+                            <span>Subtotal</span>
+                            <span id="cart-subtotal">$0.00</span>
+                        </div>
+                        <div class="totals-row">
+                            <span>Shipping</span>
+                            <span style="color: #6db67d; font-weight: 600;">FREE</span>
+                        </div>
+                        <div class="totals-row grand-total">
+                            <span>Grand Total</span>
+                            <span id="cart-total">$0.00</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Checkout Form -->
+                <div class="checkout-form-wrapper">
+                    <h3>Delivery Details</h3>
+                    <form id="checkout-form">
+                        <div class="form-grid">
+                            <div class="form-group full-width">
+                                <label for="order-name" class="form-label">Full Name *</label>
+                                <input type="text" id="order-name" class="form-input" placeholder="Enter your full name" required>
+                            </div>
+                            <div class="form-group full-width">
+                                <label for="order-phone" class="form-label">Contact Number *</label>
+                                <input type="tel" id="order-phone" class="form-input" placeholder="e.g. +91 9072582903" required>
+                            </div>
+                            <div class="form-group full-width">
+                                <label for="order-address" class="form-label">Complete Delivery Address *</label>
+                                <textarea id="order-address" class="form-input" rows="4" placeholder="House/Flat No., Street, City, Landmark, Pincode" style="resize: none;" required></textarea>
+                            </div>
+                            <div class="form-group full-width">
+                                <label for="order-notes" class="form-label">Order Notes (Optional)</label>
+                                <input type="text" id="order-notes" class="form-input" placeholder="e.g. Delivery timings, instructions">
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-place-order">Place Order via Cash on Delivery <i class="fa-solid fa-paper-plane"></i></button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Us Section -->
+    <section id="contact">
+        <div class="section-header">
+            <span class="section-tag">Reach Us</span>
+            <h2 class="section-title">Get In Touch</h2>
+        </div>
+
+        <div class="contact-container">
+            <div class="contact-info-panel">
+                <h3>Contact Information</h3>
+                <p class="contact-info-desc">
+                    Have questions about our sourcing, packaging, or bulk orders? Feel free to contact us or send an email. We will get back to you shortly!
+                </p>
+                <div class="contact-method-list">
+                    <!-- Email -->
+                    <div class="contact-method-item">
+                        <div class="contact-method-icon"><i class="fa-solid fa-envelope"></i></div>
+                        <div>
+                            <div class="contact-method-label">Email Address</div>
+                            <div class="contact-method-value"><a href="mailto:flourpotncmillproducts@gmail.com">flourpotncmillproducts@gmail.com</a></div>
+                        </div>
+                    </div>
+                    <!-- Contact Numbers -->
+                    <div class="contact-method-item">
+                        <div class="contact-method-icon"><i class="fa-solid fa-phone"></i></div>
+                        <div>
+                            <div class="contact-method-label">Call / WhatsApp Support</div>
+                            <div class="contact-method-value">
+                                <a href="tel:9072582903">9072582903</a>, <a href="tel:9605313664">9605313664</a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Instagram -->
+                    <div class="contact-method-item">
+                        <div class="contact-method-icon"><i class="fa-brands fa-instagram"></i></div>
+                        <div>
+                            <div class="contact-method-label">Instagram</div>
+                            <div class="contact-method-value">
+                                <a href="https://www.instagram.com/flourpot.organic?igsh=MWttczlzN2p6MnMyOQ==" target="_blank" rel="noopener noreferrer">flourpot.organic</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quick Inquiry Form -->
+            <div class="contact-form-panel">
+                <h3>Send Us a Message</h3>
+                <form id="contact-form">
+                    <div class="form-group" style="margin-bottom: 1.2rem;">
+                        <label for="contact-name" class="form-label">Your Name</label>
+                        <input type="text" id="contact-name" class="form-input" placeholder="John Doe" required>
+                    </div>
+                    <div class="form-group" style="margin-bottom: 1.2rem;">
+                        <label for="contact-email" class="form-label">Email Address</label>
+                        <input type="email" id="contact-email" class="form-input" placeholder="john@example.com" required>
+                    </div>
+                    <div class="form-group" style="margin-bottom: 1.2rem;">
+                        <label for="contact-message" class="form-label">Your Message</label>
+                        <textarea id="contact-message" class="form-input" rows="4" placeholder="How can we help you?" style="resize: none;" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-submit-contact">Send Message <i class="fa-solid fa-envelope-open-text"></i></button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-brand">
+                <div class="footer-brand-logo">
+                    <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="50" cy="50" r="45" fill="#ffffff" stroke="#3d6a4a" stroke-width="2.5"/>
+                        <path d="M38 52 C38 43, 40 43, 42 43 L58 43 C60 43, 62 43, 62 52 L62 66 C62 70, 59 72, 55 72 L45 72 C41 72, 38 70, 38 66 Z" fill="#eae0d5" stroke="#3d6a4a" stroke-width="3"/>
+                        <path d="M42 43 L58 43 L58 39 L42 39 Z" fill="#3d6a4a" stroke="#3d6a4a" stroke-width="2"/>
+                        <path d="M50 35 C48 31, 53 29, 50 25 C47 21, 52 19, 52 17" stroke="#3d6a4a" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+                    </svg>
+                    <span class="brand-name" style="font-family: 'Dancing Script', cursive; font-size: 1.6rem; font-weight: 700; color: #3d6a4a;">Flour Pot</span>
+                </div>
+                <p class="footer-desc">
+                    Milling pure, raw, and healthy culinary ingredients. Direct from mill processing ensuring maximum natural oils and rich taste.
+                </p>
+            </div>
+
+            <div class="footer-column">
+                <h4>Quick Links</h4>
+                <ul class="footer-links">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#products">Products</a></li>
+                    <li><a href="#about">About Us</a></li>
+                    <li><a href="#trust">Our Trust</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-column">
+                <h4>Support</h4>
+                <ul class="footer-links">
+                    <li><a href="#order">Place Order</a></li>
+                    <li><a href="#contact">Contact Support</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms of Service</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-newsletter">
+                <h4>Newsletter</h4>
+                <p class="footer-desc">Subscribe to receive recipe ideas, fresh batch alerts, and discount announcements.</p>
+                <form class="newsletter-form" onsubmit="event.preventDefault(); alert('Thank you for subscribing!'); this.reset();">
+                    <input type="email" class="newsletter-input" placeholder="Your email address" aria-label="Email address for newsletter" required>
+                    <button type="submit" class="btn btn-primary btn-newsletter"><i class="fa-solid fa-paper-plane"></i></button>
+                </form>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <div>&copy; 2026 Flour Pot Inc. All Rights Reserved.</div>
+            <div class="social-links">
+                <a href="https://www.instagram.com/flourpot.organic?igsh=MWttczlzN2p6MnMyOQ==" target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                <a href="#" class="social-icon" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+                <a href="https://wa.me/919072582903" target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Invoice / Order Success Overlay Modal -->
+    <div id="success-modal" class="modal-overlay">
+        <div class="modal-card">
+            <div class="modal-success-icon">
+                <i class="fa-solid fa-circle-check"></i>
+            </div>
+            <h3 class="modal-title">Order Received!</h3>
+            <p class="modal-text">Thank you for choosing Flour Pot. We have received your order details and are preparing your fresh batch. Below is your invoice summary:</p>
+            
+            <div id="modal-details" class="receipt-box">
+                <!-- Injected via JavaScript dynamically -->
+            </div>
+
+            <button id="btn-close-modal" class="btn btn-primary" style="width: 100%;">Continue Shopping</button>
+        </div>
+    </div>
+
+    <!-- Toast / Micro-notification element -->
+    <div id="toast" class="toast">
+        <i class="fa-solid fa-bell"></i>
+        <span id="toast-message">Item added to cart!</span>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
