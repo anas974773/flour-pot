@@ -367,78 +367,25 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Interactive Contact Form (submits to Google Form via hidden iframe)
+    // Interactive Contact Form (submits natively to Google Form targeting hidden_iframe)
     const contactForm = document.getElementById('contact-form');
     if (contactForm) {
         contactForm.addEventListener('submit', (e) => {
-            e.preventDefault();
             const name = document.getElementById('contact-name').value.trim();
-            const email = document.getElementById('contact-email').value.trim();
-            const msg = document.getElementById('contact-message').value.trim();
-
-            if (!name || !email || !msg) {
-                showToast("Please fill out the contact form details.");
-                return;
-            }
-
             const submitBtn = contactForm.querySelector('.btn-submit-contact');
             const originalBtnText = submitBtn.innerHTML;
+            
             submitBtn.disabled = true;
             submitBtn.innerHTML = 'Sending... <i class="fa-solid fa-spinner fa-spin" style="margin-left: 5px;"></i>';
 
-            const formUrl = 'https://docs.google.com/forms/u/0/d/e/1FAIpQLSd7yTtfY15MzjyI7eLkpTIC665SCVI1q9xUvg5H3a2QQr_Evg/formResponse';
-
-            // Submit using a hidden iframe to prevent CORS/protocol errors in local file environments (file:///)
-            let iframe = document.getElementById('hidden_iframe');
-            if (!iframe) {
-                iframe = document.createElement('iframe');
-                iframe.name = 'hidden_iframe';
-                iframe.id = 'hidden_iframe';
-                iframe.style.display = 'none';
-                document.body.appendChild(iframe);
-            }
-
-            const hiddenForm = document.createElement('form');
-            hiddenForm.action = formUrl;
-            hiddenForm.method = 'POST';
-            hiddenForm.target = 'hidden_iframe';
-            hiddenForm.style.display = 'none';
-
-            const fields = {
-                'entry.2049036621': name,
-                'entry.1201167991': email,
-                'entry.1129017043': msg
-            };
-
-            for (const key in fields) {
-                const input = document.createElement('input');
-                input.type = 'hidden';
-                input.name = key;
-                input.value = fields[key];
-                hiddenForm.appendChild(input);
-            }
-
-            document.body.appendChild(hiddenForm);
-
-            try {
-                hiddenForm.submit();
-
-                // Clean up hidden form element
-                setTimeout(() => {
-                    hiddenForm.remove();
-                }, 1000);
-
+            // Let the form submit natively to the hidden target iframe,
+            // then update the UI feedback after a short delay.
+            setTimeout(() => {
                 showToast(`Thank you, ${name}! Your inquiry has been received.`);
                 contactForm.reset();
-            } catch (error) {
-                console.error('Error submitting contact form via iframe:', error);
-                showToast("Failed to send message. Please try again.");
-            } finally {
-                setTimeout(() => {
-                    submitBtn.disabled = false;
-                    submitBtn.innerHTML = originalBtnText;
-                }, 500);
-            }
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = originalBtnText;
+            }, 1000);
         });
     }
 

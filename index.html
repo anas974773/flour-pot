@@ -381,18 +381,18 @@
             <!-- Quick Inquiry Form -->
             <div class="contact-form-panel">
                 <h3>Send Us a Message</h3>
-                <form id="contact-form">
+                <form id="contact-form" action="https://docs.google.com/forms/u/0/d/e/1FAIpQLSd7yTtfY15MzjyI7eLkpTIC665SCVI1q9xUvg5H3a2QQr_Evg/formResponse" method="POST" target="hidden_iframe">
                     <div class="form-group" style="margin-bottom: 1.2rem;">
                         <label for="contact-name" class="form-label">Your Name</label>
-                        <input type="text" id="contact-name" class="form-input" placeholder="John Doe" required>
+                        <input type="text" id="contact-name" name="entry.2049036621" class="form-input" placeholder="John Doe" required>
                     </div>
                     <div class="form-group" style="margin-bottom: 1.2rem;">
                         <label for="contact-email" class="form-label">Email Address</label>
-                        <input type="email" id="contact-email" class="form-input" placeholder="john@example.com" required>
+                        <input type="email" id="contact-email" name="entry.1201167991" class="form-input" placeholder="john@example.com" required>
                     </div>
                     <div class="form-group" style="margin-bottom: 1.2rem;">
                         <label for="contact-message" class="form-label">Your Message</label>
-                        <textarea id="contact-message" class="form-input" rows="4" placeholder="How can we help you?" style="resize: none;" required></textarea>
+                        <textarea id="contact-message" name="entry.1129017043" class="form-input" rows="4" placeholder="How can we help you?" style="resize: none;" required></textarea>
                     </div>
                     <button type="submit" class="btn btn-primary btn-submit-contact">Send Message <i class="fa-solid fa-envelope-open-text"></i></button>
                 </form>
@@ -480,6 +480,9 @@
         <i class="fa-solid fa-bell"></i>
         <span id="toast-message">Item added to cart!</span>
     </div>
+
+    <!-- Hidden iframe for Google Form targets -->
+    <iframe name="hidden_iframe" id="hidden_iframe" style="display: none;"></iframe>
 
     <script src="app.js"></script>
 </body>
