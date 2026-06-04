@@ -275,7 +275,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             // Google Form Config URL
-            const formUrl = 'https://docs.google.com/forms/u/0/d/e/1FAIpQLSej0MEZu1BvcQztCgnVhLvsqFJUbAhhH8XX_y1CdCjirE77HQ/formResponse';
+            const formUrl = 'https://docs.google.com/forms/u/0/d/e/1FAIpQLSc0bZLJecMieFX8I8U_8yEs7I0V1OzROqgPiEokgOKjs22Svg/formResponse';
 
             // Submit using a hidden iframe to prevent CORS/protocol errors in local file environments (file:///)
             let iframe = document.getElementById('hidden_iframe');
@@ -294,10 +294,9 @@ document.addEventListener('DOMContentLoaded', () => {
             hiddenForm.style.display = 'none';
 
             const fields = {
-                'entry.1651444001': name,
-                'entry.1527937730': phone,
-                'entry.1532002786': formattedAddress,
-                'entry.1872909915': 'Option 1'
+                'entry.2124464187': name,
+                'entry.555563620': phone,
+                'entry.137620769': formattedAddress
             };
 
             for (const key in fields) {
