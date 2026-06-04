@@ -245,11 +245,17 @@ document.addEventListener('DOMContentLoaded', () => {
                 return;
             }
 
+            const submitBtn = checkoutForm.querySelector('.btn-place-order');
+            const originalBtnText = submitBtn.innerHTML;
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = 'Placing Order... <i class="fa-solid fa-spinner fa-spin" style="margin-left: 5px;"></i>';
+
             // Generate an order receipt layout
             const orderId = 'FP-' + Math.floor(100000 + Math.random() * 900000);
             let total = 0;
 
             let itemsReceiptHTML = '';
+            let itemsString = '';
             cart.forEach(item => {
                 const itemTotal = item.price * item.quantity;
                 total += itemTotal;
@@ -259,31 +265,89 @@ document.addEventListener('DOMContentLoaded', () => {
                         <span>$${itemTotal.toFixed(2)}</span>
                     </div>
                 `;
+                itemsString += `- ${item.name} (${item.option}) x${item.quantity} ($${itemTotal.toFixed(2)})\n`;
             });
 
-            // Populate Success Modal
-            modalDetails.innerHTML = `
-                <div class="receipt-row"><strong>Order ID:</strong> <span>${orderId}</span></div>
-                <div class="receipt-row"><strong>Name:</strong> <span>${name}</span></div>
-                <div class="receipt-row"><strong>Phone:</strong> <span>${phone}</span></div>
-                <div class="receipt-row"><strong>Delivery Address:</strong> <span>${address}</span></div>
-                ${note ? `<div class="receipt-row"><strong>Notes:</strong> <span>${note}</span></div>` : ''}
-                <div style="margin: 1rem 0; border-top: 1px dashed var(--border-color);"></div>
-                ${itemsReceiptHTML}
-                <div class="receipt-row receipt-total">
-                    <span>Grand Total:</span>
-                    <span>$${total.toFixed(2)}</span>
-                </div>
-            `;
+            // Format address and details for Google Sheets / Google Form
+            let formattedAddress = `Delivery Address: ${address}\n\n--- Order Summary ---\nOrder ID: ${orderId}\nItems:\n${itemsString}Total: $${total.toFixed(2)}`;
+            if (note) {
+                formattedAddress += `\nNotes: ${note}`;
+            }
 
-            // Open Modal
-            successModal.classList.add('active');
+            // Google Form Config URL
+            const formUrl = 'https://docs.google.com/forms/u/0/d/e/1FAIpQLSej0MEZu1BvcQztCgnVhLvsqFJUbAhhH8XX_y1CdCjirE77HQ/formResponse';
 
-            // Reset cart
-            cart = [];
-            saveCart();
-            updateCartUI();
-            checkoutForm.reset();
+            // Submit using a hidden iframe to prevent CORS/protocol errors in local file environments (file:///)
+            let iframe = document.getElementById('hidden_iframe');
+            if (!iframe) {
+                iframe = document.createElement('iframe');
+                iframe.name = 'hidden_iframe';
+                iframe.id = 'hidden_iframe';
+                iframe.style.display = 'none';
+                document.body.appendChild(iframe);
+            }
+
+            const hiddenForm = document.createElement('form');
+            hiddenForm.action = formUrl;
+            hiddenForm.method = 'POST';
+            hiddenForm.target = 'hidden_iframe';
+            hiddenForm.style.display = 'none';
+
+            const fields = {
+                'entry.1651444001': name,
+                'entry.1527937730': phone,
+                'entry.1532002786': formattedAddress,
+                'entry.1872909915': 'Option 1'
+            };
+
+            for (const key in fields) {
+                const input = document.createElement('input');
+                input.type = 'hidden';
+                input.name = key;
+                input.value = fields[key];
+                hiddenForm.appendChild(input);
+            }
+
+            document.body.appendChild(hiddenForm);
+
+            try {
+                hiddenForm.submit();
+
+                // Clean up hidden form element
+                setTimeout(() => {
+                    hiddenForm.remove();
+                }, 1000);
+
+                // Populate Success Modal
+                modalDetails.innerHTML = `
+                    <div class="receipt-row"><strong>Order ID:</strong> <span>${orderId}</span></div>
+                    <div class="receipt-row"><strong>Name:</strong> <span>${name}</span></div>
+                    <div class="receipt-row"><strong>Phone:</strong> <span>${phone}</span></div>
+                    <div class="receipt-row"><strong>Delivery Address:</strong> <span>${address}</span></div>
+                    ${note ? `<div class="receipt-row"><strong>Notes:</strong> <span>${note}</span></div>` : ''}
+                    <div style="margin: 1rem 0; border-top: 1px dashed var(--border-color);"></div>
+                    ${itemsReceiptHTML}
+                    <div class="receipt-row receipt-total">
+                        <span>Grand Total:</span>
+                        <span>$${total.toFixed(2)}</span>
+                    </div>
+                `;
+
+                // Open Modal
+                successModal.classList.add('active');
+
+                // Reset cart
+                cart = [];
+                saveCart();
+                updateCartUI();
+                checkoutForm.reset();
+            } catch (error) {
+                console.error('Error submitting order via iframe:', error);
+                showToast("Failed to place order. Please try again.");
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = originalBtnText;
+            }
         });
     }
 
@@ -303,7 +367,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Interactive Contact Form (simulates sending message)
+    // Interactive Contact Form (submits to Google Form via hidden iframe)
     const contactForm = document.getElementById('contact-form');
     if (contactForm) {
         contactForm.addEventListener('submit', (e) => {
@@ -317,8 +381,64 @@ document.addEventListener('DOMContentLoaded', () => {
                 return;
             }
 
-            showToast(`Thank you, ${name}! Your inquiry has been received.`);
-            contactForm.reset();
+            const submitBtn = contactForm.querySelector('.btn-submit-contact');
+            const originalBtnText = submitBtn.innerHTML;
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = 'Sending... <i class="fa-solid fa-spinner fa-spin" style="margin-left: 5px;"></i>';
+
+            const formUrl = 'https://docs.google.com/forms/u/0/d/e/1FAIpQLSd7yTtfY15MzjyI7eLkpTIC665SCVI1q9xUvg5H3a2QQr_Evg/formResponse';
+
+            // Submit using a hidden iframe to prevent CORS/protocol errors in local file environments (file:///)
+            let iframe = document.getElementById('hidden_iframe');
+            if (!iframe) {
+                iframe = document.createElement('iframe');
+                iframe.name = 'hidden_iframe';
+                iframe.id = 'hidden_iframe';
+                iframe.style.display = 'none';
+                document.body.appendChild(iframe);
+            }
+
+            const hiddenForm = document.createElement('form');
+            hiddenForm.action = formUrl;
+            hiddenForm.method = 'POST';
+            hiddenForm.target = 'hidden_iframe';
+            hiddenForm.style.display = 'none';
+
+            const fields = {
+                'entry.2049036621': name,
+                'entry.1201167991': email,
+                'entry.1129017043': msg
+            };
+
+            for (const key in fields) {
+                const input = document.createElement('input');
+                input.type = 'hidden';
+                input.name = key;
+                input.value = fields[key];
+                hiddenForm.appendChild(input);
+            }
+
+            document.body.appendChild(hiddenForm);
+
+            try {
+                hiddenForm.submit();
+
+                // Clean up hidden form element
+                setTimeout(() => {
+                    hiddenForm.remove();
+                }, 1000);
+
+                showToast(`Thank you, ${name}! Your inquiry has been received.`);
+                contactForm.reset();
+            } catch (error) {
+                console.error('Error submitting contact form via iframe:', error);
+                showToast("Failed to send message. Please try again.");
+            } finally {
+                setTimeout(() => {
+                    submitBtn.disabled = false;
+                    submitBtn.innerHTML = originalBtnText;
+                }, 500);
+            }
         });
     }
 
